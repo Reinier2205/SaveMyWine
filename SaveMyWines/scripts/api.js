@@ -1,6 +1,13 @@
 // API functionality for SaveMyWines
 // Handles external API calls and data fetching
 
+// Supabase Configuration
+export const CONFIG = {
+    SUPABASE_URL: "<YOUR_SUPABASE_URL>",
+    SUPABASE_ANON_KEY: "<YOUR_SUPABASE_ANON_KEY>",
+    EDGE_SCAN_URL: "<YOUR_SUPABASE_FUNCTION_URL>/scan_wine",
+};
+
 const API_CONFIG = {
     baseURL: 'https://api.example.com', // Replace with actual API endpoint
     timeout: 10000,
