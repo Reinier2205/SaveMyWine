@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/styledemo.css">
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
     <header class="header">
@@ -22,7 +22,6 @@
             </nav>
         </div>
     </header>
-
     <main class="main">
         <div class="container">
             <section class="hero">
@@ -33,7 +32,6 @@
                     <a href="wines.html" class="button button-secondary">View Collection</a>
                 </div>
             </section>
-
             <section class="features">
                 <h3 class="section-title">Why SaveMyWines?</h3>
                 <div class="feature-grid">
@@ -53,13 +51,22 @@
             </section>
         </div>
     </main>
-
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 SaveMyWines. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="scripts/main.js"></script>
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered successfully:', registration);
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </body>
 </html>

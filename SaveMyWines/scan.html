@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/styledemo.css">
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
     <header class="header">
@@ -22,13 +22,11 @@
             </nav>
         </div>
     </header>
-
     <main class="main">
         <div class="container">
             <section class="scan-section">
                 <h2 class="section-title">Scan Wine Label</h2>
                 <p class="section-text">Point your camera at a wine label to add it to your collection.</p>
-                
                 <div class="scan-container">
                     <div class="card scan-card">
                         <div class="camera-placeholder">
@@ -38,7 +36,6 @@
                         <button class="button scan-button">Start Camera</button>
                     </div>
                 </div>
-
                 <div class="manual-entry">
                     <h3>Or Enter Manually</h3>
                     <form class="wine-form">
@@ -71,13 +68,22 @@
             </section>
         </div>
     </main>
-
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 SaveMyWines. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="scripts/scan.js"></script>
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered successfully:', registration);
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </body>
 </html>

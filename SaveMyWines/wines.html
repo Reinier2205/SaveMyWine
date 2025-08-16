@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/styledemo.css">
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
     <header class="header">
@@ -22,7 +22,6 @@
             </nav>
         </div>
     </header>
-
     <main class="main">
         <div class="container">
             <section class="wines-header">
@@ -34,7 +33,6 @@
                     </div>
                 </div>
             </section>
-
             <section class="filters">
                 <div class="filter-group">
                     <label for="filter-varietal">Filter by Varietal:</label>
@@ -58,7 +56,6 @@
                     </select>
                 </div>
             </section>
-
             <section class="wines-grid">
                 <div class="card wine-card">
                     <div class="wine-image">
@@ -76,7 +73,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card wine-card">
                     <div class="wine-image">
                         <div class="wine-placeholder">🍷</div>
@@ -93,7 +89,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card wine-card">
                     <div class="wine-image">
                         <div class="wine-placeholder">🍷</div>
@@ -111,7 +106,6 @@
                     </div>
                 </div>
             </section>
-
             <div class="empty-state" style="display: none;">
                 <div class="card">
                     <h3>No Wines Yet</h3>
@@ -121,13 +115,22 @@
             </div>
         </div>
     </main>
-
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 SaveMyWines. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="scripts/wines.js"></script>
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered successfully:', registration);
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </body>
 </html>
