@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wines - SaveMyWines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/styledemo.css">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">SaveMyWines</h1>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="wines.html" class="nav-link active">My Wines</a>
+                <a href="scan.html" class="nav-link">Scan Wine</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="wines-header">
+                <h2 class="section-title">My Wine Collection</h2>
+                <div class="wines-actions">
+                    <a href="scan.html" class="button">Add New Wine</a>
+                    <div class="search-container">
+                        <input type="text" class="input search-input" placeholder="Search wines...">
+                    </div>
+                </div>
+            </section>
+
+            <section class="filters">
+                <div class="filter-group">
+                    <label for="filter-varietal">Filter by Varietal:</label>
+                    <select id="filter-varietal" class="input">
+                        <option value="">All Varietals</option>
+                        <option value="cabernet-sauvignon">Cabernet Sauvignon</option>
+                        <option value="merlot">Merlot</option>
+                        <option value="pinot-noir">Pinot Noir</option>
+                        <option value="chardonnay">Chardonnay</option>
+                        <option value="sauvignon-blanc">Sauvignon Blanc</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-region">Filter by Region:</label>
+                    <select id="filter-region" class="input">
+                        <option value="">All Regions</option>
+                        <option value="bordeaux">Bordeaux</option>
+                        <option value="burgundy">Burgundy</option>
+                        <option value="tuscany">Tuscany</option>
+                        <option value="napa-valley">Napa Valley</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="wines-grid">
+                <div class="card wine-card">
+                    <div class="wine-image">
+                        <div class="wine-placeholder">🍷</div>
+                    </div>
+                    <div class="wine-info">
+                        <h3 class="wine-name">Château Margaux 2015</h3>
+                        <p class="wine-details">Bordeaux, France • Cabernet Sauvignon</p>
+                        <div class="wine-tags">
+                            <span class="tag">Red</span>
+                            <span class="tag">Premium</span>
+                        </div>
+                        <div class="wine-actions">
+                            <button class="button button-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card wine-card">
+                    <div class="wine-image">
+                        <div class="wine-placeholder">🍷</div>
+                    </div>
+                    <div class="wine-info">
+                        <h3 class="wine-name">Domaine de la Romanée-Conti 2018</h3>
+                        <p class="wine-details">Burgundy, France • Pinot Noir</p>
+                        <div class="wine-tags">
+                            <span class="tag">Red</span>
+                            <span class="tag">Collector</span>
+                        </div>
+                        <div class="wine-actions">
+                            <button class="button button-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card wine-card">
+                    <div class="wine-image">
+                        <div class="wine-placeholder">🍷</div>
+                    </div>
+                    <div class="wine-info">
+                        <h3 class="wine-name">Sassicaia 2016</h3>
+                        <p class="wine-details">Tuscany, Italy • Cabernet Sauvignon</p>
+                        <div class="wine-tags">
+                            <span class="tag">Red</span>
+                            <span class="tag">Super Tuscan</span>
+                        </div>
+                        <div class="wine-actions">
+                            <button class="button button-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="empty-state" style="display: none;">
+                <div class="card">
+                    <h3>No Wines Yet</h3>
+                    <p>Start building your collection by scanning your first wine label.</p>
+                    <a href="scan.html" class="button">Scan Wine</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SaveMyWines. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/wines.js"></script>
+</body>
+</html>
