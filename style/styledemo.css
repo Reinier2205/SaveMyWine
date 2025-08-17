@@ -18,13 +18,13 @@
 html, body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
   margin: 0;
   line-height: 1.6;
 }
 
 h1, h2, h3, h4 {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif !important;
   margin: 0 0 var(--space-3);
   line-height: 1.2;
 }
@@ -124,6 +124,12 @@ h1, h2, h3, h4 {
   padding: 0 var(--space-4);
 }
 
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Utility Classes */
 .space-y-4 > * + * {
   margin-top: var(--space-4);
@@ -221,6 +227,12 @@ h1, h2, h3, h4 {
 }
 
 /* Hero Section */
+.hero {
+  text-align: center;
+  padding: var(--space-4) 0;
+  margin-bottom: var(--space-4);
+}
+
 .hero-section {
   text-align: center;
   padding: var(--space-4) 0;
@@ -228,7 +240,7 @@ h1, h2, h3, h4 {
 }
 
 .heading-1 {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif !important;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: var(--space-3);
@@ -236,21 +248,21 @@ h1, h2, h3, h4 {
 }
 
 .heading-3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif !important;
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: var(--space-3);
 }
 
 .body {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
   font-size: 1.1rem;
   color: var(--color-text);
   margin-bottom: var(--space-3);
 }
 
 .body-sm {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
   font-size: 0.9rem;
   color: var(--color-text);
   opacity: 0.8;
@@ -418,11 +430,11 @@ textarea:hover {
   color: #fff;
   padding: var(--space-3) 0;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
 }
 
 .logo {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif !important;
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
@@ -435,7 +447,7 @@ textarea:hover {
 }
 
 .nav-link {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
   color: #fff;
   text-decoration: none;
   padding: 8px 16px;
@@ -469,21 +481,41 @@ textarea:hover {
   margin-top: auto;
 }
 
+.footer p {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  margin: 0;
+}
+
 /* Features */
 .features {
   padding: var(--space-4) 0;
 }
 
 .hero-title {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif !important;
   font-size: 3rem;
   margin-bottom: var(--space-3);
   color: var(--color-primary);
   line-height: 1.2;
 }
 
+.hero-text {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .section-title {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif !important;
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: var(--space-4);
@@ -501,9 +533,23 @@ textarea:hover {
   text-align: center;
 }
 
+.feature-card h3 {
+  font-family: "Playfair Display", serif !important;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
 .feature-card h4 {
   color: var(--color-primary);
   margin-bottom: var(--space-2);
+}
+
+.feature-card p {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  color: var(--color-text);
+  line-height: 1.6;
 }
 
 /* Form Styles */
