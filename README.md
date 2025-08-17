@@ -56,7 +56,6 @@ A modern Progressive Web App (PWA) for building and managing your personal wine 
 ## File Structure
 
 ```
-SaveMyWines/
 ├── index.html          # Main landing page
 ├── scan.html          # Wine scanning page
 ├── wines.html         # Wine collection page

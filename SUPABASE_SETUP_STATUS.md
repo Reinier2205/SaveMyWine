@@ -110,7 +110,6 @@
 ## 📁 Project Structure
 
 ```
-SaveMyWines/
 ├── scan.html                    # Wine scanning interface with accessibility
 ├── wines.html                   # Wine collection listing with export/import & accessibility
 ├── index.html                   # Home page with semantic structure

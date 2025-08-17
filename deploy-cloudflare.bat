@@ -18,15 +18,15 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Check if SaveMyWines folder exists
-if not exist "SaveMyWines" (
-    echo ❌ SaveMyWines folder not found. Please run this script from the project root.
+REM Check if current directory contains required files
+if not exist "index.html" (
+    echo ❌ index.html not found. Please run this script from the project root.
     pause
     exit /b 1
 )
 
-echo 📦 Deploying SaveMyWines folder to Cloudflare Pages...
-wrangler pages deploy SaveMyWines --project-name savemywine
+echo 📦 Deploying current directory to Cloudflare Pages...
+wrangler pages deploy . --project-name savemywine
 
 if %errorlevel% equ 0 (
     echo.

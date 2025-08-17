@@ -37,13 +37,13 @@ Use this checklist to ensure all deployment steps are completed correctly.
 ### Cloudflare Pages Deployment
 - [ ] Install Wrangler: `npm install -g wrangler`
 - [ ] Login to Cloudflare: `wrangler login`
-- [ ] Deploy: `wrangler pages deploy SaveMyWines --project-name savemywines`
+- [ ] Deploy: `wrangler pages deploy . --project-name savemywines`
 - [ ] Note the deployment URL
 
 ### Netlify Deployment
 - [ ] Install Netlify CLI: `npm install -g netlify-cli`
 - [ ] Login to Netlify: `netlify login`
-- [ ] Deploy: `netlify deploy --prod --dir=SaveMyWines`
+- [ ] Deploy: `netlify deploy --prod --dir=.`
 - [ ] Note the deployment URL
 
 ### Configuration Updates

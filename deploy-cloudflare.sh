@@ -16,14 +16,14 @@ if ! wrangler whoami &> /dev/null; then
     exit 1
 fi
 
-# Check if SaveMyWines folder exists
-if [ ! -d "SaveMyWines" ]; then
-    echo "❌ SaveMyWines folder not found. Please run this script from the project root."
+# Check if current directory contains required files
+if [ ! -f "index.html" ]; then
+    echo "❌ index.html not found. Please run this script from the project root."
     exit 1
 fi
 
-echo "📦 Deploying SaveMyWines folder to Cloudflare Pages..."
-wrangler pages deploy SaveMyWines --project-name savemywine
+echo "📦 Deploying current directory to Cloudflare Pages..."
+wrangler pages deploy . --project-name savemywine
 
 if [ $? -eq 0 ]; then
     echo ""

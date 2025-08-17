@@ -1,5 +1,5 @@
 [build]
-  publish = "SaveMyWines"
+  publish = "."
   command = "echo 'Static site - no build required'"
 
 [build.environment]
