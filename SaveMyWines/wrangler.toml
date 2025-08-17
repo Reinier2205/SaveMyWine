@@ -1,0 +1,23 @@
+name = "savemywines"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[site]
+bucket = "./SaveMyWines"
+
+[env.production]
+name = "savemywines"
+
+[env.staging]
+name = "savemywines-staging"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[env.production.vars]
+ENVIRONMENT = "production"
+
+[env.staging.vars]
+ENVIRONMENT = "staging"

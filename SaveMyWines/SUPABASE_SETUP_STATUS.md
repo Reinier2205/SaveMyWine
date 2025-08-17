@@ -56,6 +56,15 @@
 - **Color Contrast**: Improved contrast ratios for better visibility
 - **Motion Support**: Respects user's reduced motion preferences
 
+### Step 8: Deploy to Production
+- **Status**: ✅ COMPLETED
+- **Edge Functions**: Complete deployment scripts for scan_wine, add_wine, list_wines
+- **Frontend Hosting**: Cloudflare Pages and Netlify deployment configurations
+- **Deployment Scripts**: Automated deployment for both Edge Functions and frontend
+- **Production Config**: Production-ready configuration with proper URLs
+- **Deployment Guide**: Comprehensive step-by-step deployment instructions
+- **Deployment Checklist**: Complete verification checklist for production readiness
+
 ## 🔧 Edge Function Details
 
 ### Functions Created
@@ -115,11 +124,21 @@ SaveMyWines/
 │   └── README.md                # Setup instructions
 ├── scripts/
 │   ├── api.js                   # Frontend config with all Edge Function URLs
+│   ├── api.prod.js              # Production configuration file
 │   ├── scan.js                  # Scan functionality
 │   ├── storage.js               # Wine saving and listing
 │   └── utils.js                 # Wine utilities
 ├── style/
 │   └── styledemo.css            # Complete styling with accessibility & a11y support
+├── Deployment Files
+│   ├── netlify.toml             # Netlify deployment configuration
+│   ├── wrangler.toml            # Cloudflare Pages configuration
+│   ├── deploy-all-functions.sh  # Edge Function deployment script (Unix)
+│   ├── deploy-all-functions.bat # Edge Function deployment script (Windows)
+│   ├── deploy-frontend.sh       # Frontend deployment script (Unix)
+│   ├── deploy-frontend.bat      # Frontend deployment script (Windows)
+│   ├── DEPLOYMENT_GUIDE.md      # Comprehensive deployment instructions
+│   └── DEPLOYMENT_CHECKLIST.md  # Production deployment checklist
 └── SUPABASE_SETUP_STATUS.md     # This file
 ```
 
@@ -138,6 +157,10 @@ Once all Edge Functions are deployed and tested:
 - **Keyboard navigation with visible focus indicators**
 - **High contrast mode support**
 - **Reduced motion support for accessibility**
+- **Production deployment automation**
+- **Multi-platform hosting support**
+- **Comprehensive deployment documentation**
+- **Production testing and verification tools**
 
 ## 🔍 Step 5 Features
 
@@ -203,6 +226,32 @@ Once all Edge Functions are deployed and tested:
 - **High Contrast**: Support for high contrast mode preferences
 - **Motion Preferences**: Respects user's reduced motion settings
 - **Color Tokens**: Consistent use of design system colors
+
+## 🔍 Step 8 Features
+
+### Edge Function Deployment
+- **Automated Scripts**: One-command deployment for all functions
+- **Cross-Platform**: Windows (.bat) and Unix (.sh) deployment scripts
+- **Error Handling**: Comprehensive error checking and user feedback
+- **Environment Setup**: Automatic project linking and verification
+
+### Frontend Hosting Options
+- **Cloudflare Pages**: Optimized configuration with wrangler.toml
+- **Netlify**: Complete deployment setup with netlify.toml
+- **Dual Platform**: Support for deploying to both platforms simultaneously
+- **Custom Domains**: Configuration for custom domain setup
+
+### Production Configuration
+- **Environment Variables**: Proper configuration for production Edge Functions
+- **URL Management**: Production-ready Edge Function endpoints
+- **Health Checks**: Utility functions to verify function accessibility
+- **Error Monitoring**: Built-in error handling and logging
+
+### Deployment Automation
+- **CLI Integration**: Seamless integration with platform-specific tools
+- **Prerequisites Check**: Automatic verification of required tools and accounts
+- **Deployment Verification**: Post-deployment testing and validation
+- **Rollback Support**: Documentation for deployment rollback procedures
 
 ## 📚 Resources
 
