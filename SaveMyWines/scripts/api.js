@@ -6,6 +6,8 @@ export const CONFIG = {
     SUPABASE_URL: "https://ssgraiwyiknqtlhjxvpc.supabase.co",
     SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzZ3JhaXd5aWtucXRsaGp4dnBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0MDI0OTAsImV4cCI6MjA3MDk3ODQ5MH0.wWXk9DHID9WocuIoKHoHk3KFaJa5IbyCti3UPgjR3ik",
     EDGE_SCAN_URL: "https://ssgraiwyiknqtlhjxvpc.supabase.co/functions/v1/scan_wine",
+    EDGE_ADD_URL: "https://ssgraiwyiknqtlhjxvpc.supabase.co/functions/v1/add_wine",
+    EDGE_LIST_URL: "https://ssgraiwyiknqtlhjxvpc.supabase.co/functions/v1/list_wines",
 };
 
 const API_CONFIG = {

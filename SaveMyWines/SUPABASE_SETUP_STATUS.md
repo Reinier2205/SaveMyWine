@@ -30,14 +30,24 @@
 - **utils.js**: Added wine utility functions (calcBestDrinkDate, yearsAndMonthsSince)
 - **styledemo.css**: Added required CSS classes and styling
 
+### Step 5: Save & List Wines
+- **Status**: ✅ COMPLETED
+- **Edge Functions**: Created `add_wine` and `list_wines` functions
+- **storage.js**: Implemented wine saving and listing functionality
+- **wines.html**: Complete wine collection interface with filtering
+- **Privacy**: All DB writes go through Edge Functions using service role key
+
 ## 🔧 Edge Function Details
 
+### Functions Created
+1. **`scan_wine`** - Wine label scanning and analysis
+2. **`add_wine`** - Save wine data to database
+3. **`list_wines`** - Retrieve wines by device_id
+
 ### Location
-- `supabase/functions/scan_wine/index.ts` - Main function code
-- `supabase/functions/scan_wine/README.md` - Setup instructions
-- `supabase/functions/scan_wine/deploy.sh` - Linux/Mac deployment script
-- `supabase/functions/scan_wine/deploy.bat` - Windows deployment script
-- `supabase/functions/scan_wine/test.js` - Test script
+- `supabase/functions/scan_wine/` - Wine label scanning
+- `supabase/functions/add_wine/` - Wine data saving
+- `supabase/functions/list_wines/` - Wine data retrieval
 
 ### Environment Variables Required
 - `VISION_API_KEY` - Google Cloud Vision API key
@@ -48,7 +58,12 @@
 1. Install Supabase CLI: `npm install -g supabase`
 2. Login: `supabase login`
 3. Link project: `supabase link --project-ref ssgraiwyiknqtlhjxvpc`
-4. Deploy: `supabase functions deploy scan_wine`
+4. Deploy functions:
+   ```bash
+   supabase functions deploy scan_wine
+   supabase functions deploy add_wine
+   supabase functions deploy list_wines
+   ```
 
 ## 🎯 Next Steps
 
@@ -56,72 +71,71 @@
 1. **Get Google Vision API Key** from Google Cloud Console
 2. **Get Supabase Service Role Key** from your project dashboard
 3. **Set Environment Variables** in Supabase Edge Functions settings
-4. **Deploy the Function** using the provided scripts
+4. **Deploy All Functions** using the provided scripts
 
 ### Testing
-- Use `test.js` to verify function deployment
-- Test with sample wine label images
-- Verify storage uploads work correctly
-- Check Vision API responses
+- Test wine label scanning end-to-end
+- Verify wine saving to database
+- Check wine listing and filtering
+- Test "Soon" badge for wines within 1 year of best drink date
 
 ## 📁 Project Structure
 
 ```
 SaveMyWines/
-├── scan.html                    # Updated scan interface
+├── scan.html                    # Wine scanning interface
+├── wines.html                   # Wine collection listing
 ├── supabase/
 │   ├── functions/
-│   │   └── scan_wine/
-│   │       ├── index.ts          # Main function
-│   │       ├── README.md         # Setup guide
-│   │       ├── deploy.sh         # Linux/Mac deploy
-│   │       ├── deploy.bat        # Windows deploy
-│   │       └── test.js           # Test script
-│   ├── schema.sql                # Database schema
-│   └── README.md                 # Setup instructions
+│   │   ├── scan_wine/           # Label scanning function
+│   │   ├── add_wine/            # Wine saving function
+│   │   └── list_wines/          # Wine listing function
+│   ├── schema.sql               # Database schema
+│   └── README.md                # Setup instructions
 ├── scripts/
-│   ├── api.js                    # Frontend config
-│   ├── scan.js                   # Updated scan functionality
-│   └── utils.js                  # Added wine utilities
+│   ├── api.js                   # Frontend config with all Edge Function URLs
+│   ├── scan.js                  # Scan functionality
+│   ├── storage.js               # Wine saving and listing
+│   └── utils.js                 # Wine utilities
 ├── style/
-│   └── styledemo.css             # Updated with scan styles
-└── SUPABASE_SETUP_STATUS.md      # This file
+│   └── styledemo.css            # Complete styling for all interfaces
+└── SUPABASE_SETUP_STATUS.md     # This file
 ```
 
 ## 🚀 Ready for Production
 
-Once the Edge Function is deployed and tested:
-- Wine label scanning will work end-to-end
-- Frontend can capture images and send to Edge Function
-- Images will be stored in Supabase storage
-- Wine data will be extracted using AI
-- Users can edit and save wine information
+Once all Edge Functions are deployed and tested:
+- Complete wine workflow: scan → save → list
+- Privacy-focused: all DB operations via Edge Functions
+- Device-based data segmentation
+- Full CRUD operations for wine collection
+- Responsive design for all devices
 
-## 🔍 Step 4 Features
+## 🔍 Step 5 Features
 
-### Scan Interface
-- **Hero Section**: "Scan a Bottle" with descriptive text
-- **File Upload**: Input with camera capture support
-- **Scan Button**: Triggers label analysis
-- **Result Display**: Editable form with extracted data
+### Wine Saving
+- **Privacy**: All database writes via Edge Functions
+- **Service Role**: Uses service role key for database access
+- **Validation**: Required fields checked before saving
+- **Error Handling**: Clear feedback for save failures
+- **Redirect**: Automatic redirect to wines list after save
 
-### Functionality
-- **Device ID**: Auto-generated and stored in localStorage
-- **File Handling**: Supports image uploads and camera capture
-- **Edge Function Integration**: POSTs to scan_wine function
-- **Data Extraction**: Shows parsed wine information
-- **Form Editing**: All fields are editable before saving
-- **Best Drink Date**: Auto-calculated based on varietal and vintage
+### Wine Listing
+- **Grid Display**: Responsive card layout for wine collection
+- **Filtering**: Real-time search by varietal, vintage, name, producer
+- **Age Calculation**: Shows years and months since purchase
+- **Best Drink Date**: Displays optimal drinking window
+- **"Soon" Badge**: Highlights wines ready to drink within 1 year
 
 ### User Experience
-- **Loading States**: Button shows "Scanning..." during processing
-- **Error Handling**: Clear error messages for failures
-- **File Preview**: Shows selected file information
-- **Responsive Design**: Works on both desktop and mobile
+- **Loading States**: Shows loading indicators during operations
+- **Empty States**: Helpful messages when no wines exist
+- **Error Handling**: Graceful error display and recovery
+- **Responsive Design**: Works on desktop and mobile devices
 
 ## 📚 Resources
 
 - [Supabase Edge Functions](https://supabase.com/docs/guides/functions)
 - [Google Cloud Vision API](https://cloud.google.com/vision/docs)
-- [Deployment Scripts](./supabase/functions/scan_wine/)
-- [Test Script](./supabase/functions/scan_wine/test.js)
+- [Deployment Scripts](./supabase/functions/)
+- [Function Documentation](./supabase/functions/*/README.md)
