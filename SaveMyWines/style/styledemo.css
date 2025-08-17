@@ -182,6 +182,14 @@ h1, h2, h3, h4 {
   gap: var(--space-4);
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.min-w-64 {
+  min-width: 16rem;
+}
+
 /* Text Utilities */
 .text-center {
   text-align: center;

@@ -48,6 +48,32 @@
                 </div>
             </section>
 
+            <!-- Export/Import Section -->
+            <section class="export-import-section mb-6">
+                <div class="card p-6">
+                    <h3 class="heading-3 mb-4">Export & Import</h3>
+                    <div class="flex items-center gap-4 flex-wrap">
+                        <button id="exportJson" class="btn btn-secondary">
+                            Export JSON
+                        </button>
+                        <button id="exportCsv" class="btn btn-secondary" style="background:var(--color-accent);color:#212">
+                            Export CSV
+                        </button>
+                        <div class="flex-1 min-w-64">
+                            <input 
+                                id="importFile" 
+                                class="bg-input border border-input-border text-main placeholder-muted text-base w-full p-3 rounded-lg" 
+                                type="file" 
+                                accept=".json"
+                            >
+                        </div>
+                    </div>
+                    <p class="body-sm text-muted mt-3">
+                        Export your wine collection or import wines from a JSON file. Import functionality is preview-only in this MVP.
+                    </p>
+                </div>
+            </section>
+
             <!-- Wines Grid -->
             <section class="wines-section">
                 <div id="grid" style="display:grid;gap:16px;grid-template-columns:1fr">
@@ -84,6 +110,82 @@
         const loading = document.getElementById('loading');
         const empty = document.getElementById('empty');
         let wines = [];
+        
+        // Download utility function
+        function download(name, text) {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain' }));
+            a.download = name;
+            a.click();
+        }
+        
+        // Export JSON functionality
+        document.getElementById('exportJson').onclick = () => {
+            if (wines.length === 0) {
+                alert('No wines to export. Add some wines first!');
+                return;
+            }
+            download("wines.json", JSON.stringify(wines, null, 2));
+        };
+        
+        // Export CSV functionality
+        document.getElementById('exportCsv').onclick = () => {
+            if (wines.length === 0) {
+                alert('No wines to export. Add some wines first!');
+                return;
+            }
+            const rows = [["name","producer","varietal","vintage","date_purchased","best_drink_date","notes","label_image_url"]];
+            wines.forEach(w => rows.push([
+                w.name, 
+                w.producer, 
+                w.varietal, 
+                w.vintage, 
+                w.date_purchased, 
+                w.best_drink_date, 
+                w.notes, 
+                w.label_image_url
+            ]));
+            const csvContent = rows.map(r => 
+                r.map(x => `"${(x ?? '').toString().replace(/"/g, '""')}"`).join(",")
+            ).join("\n");
+            download("wines.csv", csvContent);
+        };
+        
+        // Import functionality
+        document.getElementById('importFile').onchange = async (e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            
+            try {
+                const text = await file.text();
+                const arr = JSON.parse(text);
+                
+                if (!Array.isArray(arr)) {
+                    alert('Invalid file format. Expected JSON array of wines.');
+                    return;
+                }
+                
+                // Validate wine data structure
+                const validWines = arr.filter(w => w.name && w.date_purchased);
+                const invalidCount = arr.length - validWines.length;
+                
+                let message = `Imported ${arr.length} wines`;
+                if (invalidCount > 0) {
+                    message += ` (${invalidCount} invalid entries skipped)`;
+                }
+                message += '.\n\nThis is preview-only in MVP. Full import functionality will be implemented in the next step.';
+                
+                alert(message);
+                
+                // Clear the file input
+                e.target.value = '';
+                
+            } catch (error) {
+                console.error('Import error:', error);
+                alert('Error reading file. Please ensure it\'s a valid JSON file.');
+                e.target.value = '';
+            }
+        };
         
         // Paint wines to grid
         const paint = (arr) => { 

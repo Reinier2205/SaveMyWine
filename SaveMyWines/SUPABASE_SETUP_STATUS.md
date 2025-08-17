@@ -37,6 +37,14 @@
 - **wines.html**: Complete wine collection interface with filtering
 - **Privacy**: All DB writes go through Edge Functions using service role key
 
+### Step 6: Export / Import
+- **Status**: ✅ COMPLETED
+- **Export JSON**: Downloads wine collection as formatted JSON file
+- **Export CSV**: Downloads wine collection as CSV file with proper escaping
+- **Import JSON**: Reads JSON files and previews wine count (MVP preview-only)
+- **File Validation**: Checks file format and wine data structure
+- **User Experience**: Clear feedback and error handling for all operations
+
 ## 🔧 Edge Function Details
 
 ### Functions Created
@@ -84,7 +92,7 @@
 ```
 SaveMyWines/
 ├── scan.html                    # Wine scanning interface
-├── wines.html                   # Wine collection listing
+├── wines.html                   # Wine collection listing with export/import
 ├── supabase/
 │   ├── functions/
 │   │   ├── scan_wine/           # Label scanning function
@@ -105,10 +113,12 @@ SaveMyWines/
 ## 🚀 Ready for Production
 
 Once all Edge Functions are deployed and tested:
-- Complete wine workflow: scan → save → list
+- Complete wine workflow: scan → save → list → export/import
 - Privacy-focused: all DB operations via Edge Functions
 - Device-based data segmentation
 - Full CRUD operations for wine collection
+- Data portability with JSON/CSV export
+- Import capability for data migration
 - Responsive design for all devices
 
 ## 🔍 Step 5 Features
@@ -132,6 +142,27 @@ Once all Edge Functions are deployed and tested:
 - **Empty States**: Helpful messages when no wines exist
 - **Error Handling**: Graceful error display and recovery
 - **Responsive Design**: Works on desktop and mobile devices
+
+## 🔍 Step 6 Features
+
+### Export Functionality
+- **JSON Export**: Downloads complete wine collection as formatted JSON
+- **CSV Export**: Downloads wine collection as CSV with proper field escaping
+- **File Naming**: Automatic file naming (wines.json, wines.csv)
+- **Data Validation**: Checks for wines before allowing export
+
+### Import Functionality
+- **JSON Import**: Reads wine data from JSON files
+- **File Validation**: Checks file format and data structure
+- **Data Preview**: Shows count of imported wines
+- **Error Handling**: Clear feedback for invalid files
+- **MVP Preview**: Import functionality is preview-only in this version
+
+### User Experience
+- **Clear Interface**: Export/import section with descriptive buttons
+- **File Input**: Accepts .json files for import
+- **Feedback**: Immediate response for all operations
+- **Responsive Layout**: Works on all device sizes
 
 ## 📚 Resources
 
