@@ -4,9 +4,9 @@ setlocal enabledelayedexpansion
 echo 🌐 SaveMyWines - Frontend Deployment
 echo ====================================
 
-REM Check if SaveMyWines directory exists
-if not exist "SaveMyWines" (
-    echo ❌ SaveMyWines directory not found. Please run this script from the project root.
+REM Check if we're in the right directory (should have index.html)
+if not exist "index.html" (
+    echo ❌ index.html not found. Please run this script from the project root (SaveMyWine folder).
     pause
     exit /b 1
 )
@@ -65,7 +65,7 @@ exit /b 0
 
 :deploy_cf
 echo 📦 Deploying to Cloudflare Pages...
-wrangler pages deploy SaveMyWines --project-name savemywines
+wrangler pages deploy . --project-name savemywines
 if %errorlevel% equ 0 (
     echo ✅ Deployed to Cloudflare Pages successfully!
 ) else (
@@ -90,7 +90,7 @@ exit /b 0
 
 :deploy_netlify_func
 echo 📦 Deploying to Netlify...
-netlify deploy --prod --dir=SaveMyWines
+netlify deploy --prod --dir=.
 if %errorlevel% equ 0 (
     echo ✅ Deployed to Netlify successfully!
 ) else (

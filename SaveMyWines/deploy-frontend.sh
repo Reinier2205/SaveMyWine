@@ -15,9 +15,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# Check if SaveMyWines directory exists
-if [ ! -d "SaveMyWines" ]; then
-    echo -e "${RED}❌ SaveMyWines directory not found. Please run this script from the project root.${NC}"
+# Check if we're in the right directory (should have index.html)
+if [ ! -f "index.html" ]; then
+    echo -e "${RED}❌ index.html not found. Please run this script from the project root (SaveMyWine folder).${NC}"
     exit 1
 fi
 
@@ -39,7 +39,7 @@ deploy_cloudflare() {
     
     # Deploy
     echo -e "${BLUE}📦 Deploying...${NC}"
-    wrangler pages deploy SaveMyWines --project-name savemywines
+    wrangler pages deploy . --project-name savemywines
     
     echo -e "${GREEN}✅ Deployed to Cloudflare Pages successfully!${NC}"
 }
@@ -62,7 +62,7 @@ deploy_netlify() {
     
     # Deploy
     echo -e "${BLUE}📦 Deploying...${NC}"
-    netlify deploy --prod --dir=SaveMyWines
+    netlify deploy --prod --dir=.
     
     echo -e "${GREEN}✅ Deployed to Netlify successfully!${NC}"
 }

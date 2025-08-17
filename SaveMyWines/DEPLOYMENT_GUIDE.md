@@ -69,7 +69,7 @@ wrangler login
 
 #### 2.3 Deploy
 ```bash
-wrangler pages deploy SaveMyWines --project-name savemywines
+wrangler pages deploy . --project-name savemywines
 ```
 
 #### 2.4 Configure Custom Domain (Optional)
@@ -92,7 +92,7 @@ netlify login
 
 #### 2.3 Deploy
 ```bash
-netlify deploy --prod --dir=SaveMyWines
+netlify deploy --prod --dir=.
 ```
 
 #### 2.4 Configure Custom Domain (Optional)
