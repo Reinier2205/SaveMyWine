@@ -45,6 +45,17 @@
 - **File Validation**: Checks file format and wine data structure
 - **User Experience**: Clear feedback and error handling for all operations
 
+### Step 7: UI Polish & A11y
+- **Status**: ✅ COMPLETED
+- **Focus States**: All interactive elements have :focus-visible outlines
+- **ARIA Labels**: Buttons and inputs have descriptive aria-labels
+- **Hover States**: Interactive elements have hover and active states
+- **No Inline Styles**: All inline styles replaced with CSS classes
+- **Skip Links**: Added skip navigation for screen readers
+- **Semantic HTML**: Proper heading hierarchy and form structure
+- **Color Contrast**: Improved contrast ratios for better visibility
+- **Motion Support**: Respects user's reduced motion preferences
+
 ## 🔧 Edge Function Details
 
 ### Functions Created
@@ -91,8 +102,10 @@
 
 ```
 SaveMyWines/
-├── scan.html                    # Wine scanning interface
-├── wines.html                   # Wine collection listing with export/import
+├── scan.html                    # Wine scanning interface with accessibility
+├── wines.html                   # Wine collection listing with export/import & accessibility
+├── index.html                   # Home page with semantic structure
+├── about.html                   # About page with accessibility features
 ├── supabase/
 │   ├── functions/
 │   │   ├── scan_wine/           # Label scanning function
@@ -106,7 +119,7 @@ SaveMyWines/
 │   ├── storage.js               # Wine saving and listing
 │   └── utils.js                 # Wine utilities
 ├── style/
-│   └── styledemo.css            # Complete styling for all interfaces
+│   └── styledemo.css            # Complete styling with accessibility & a11y support
 └── SUPABASE_SETUP_STATUS.md     # This file
 ```
 
@@ -120,6 +133,11 @@ Once all Edge Functions are deployed and tested:
 - Data portability with JSON/CSV export
 - Import capability for data migration
 - Responsive design for all devices
+- **Accessibility compliance with WCAG guidelines**
+- **Screen reader support with skip navigation**
+- **Keyboard navigation with visible focus indicators**
+- **High contrast mode support**
+- **Reduced motion support for accessibility**
 
 ## 🔍 Step 5 Features
 
@@ -163,6 +181,28 @@ Once all Edge Functions are deployed and tested:
 - **File Input**: Accepts .json files for import
 - **Feedback**: Immediate response for all operations
 - **Responsive Layout**: Works on all device sizes
+
+## 🔍 Step 7 Features
+
+### Accessibility Improvements
+- **Focus Management**: All interactive elements have visible focus indicators
+- **ARIA Support**: Comprehensive aria-labels and semantic structure
+- **Skip Navigation**: Skip links for screen reader users
+- **Semantic HTML**: Proper heading hierarchy (h1 → h2 → h3)
+- **Form Accessibility**: Proper labels and descriptions for all inputs
+
+### Visual Enhancements
+- **Hover States**: Interactive feedback for all clickable elements
+- **Active States**: Visual feedback during user interactions
+- **Loading States**: Clear indicators for async operations
+- **Error States**: Visual feedback for validation errors
+
+### User Experience
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Screen Reader Support**: Optimized for assistive technologies
+- **High Contrast**: Support for high contrast mode preferences
+- **Motion Preferences**: Respects user's reduced motion settings
+- **Color Tokens**: Consistent use of design system colors
 
 ## 📚 Resources
 

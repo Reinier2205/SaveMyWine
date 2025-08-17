@@ -11,6 +11,9 @@
     <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header class="header">
         <div class="container">
             <h1 class="logo">SaveMyWines</h1>
@@ -22,7 +25,7 @@
             </nav>
         </div>
     </header>
-    <main class="main">
+    <main class="main" id="main-content">
         <div class="container">
             <!-- Hero Section -->
             <section class="hero-section">
@@ -46,17 +49,19 @@
                             type="file" 
                             accept="image/*" 
                             capture="environment"
+                            aria-label="Select wine label image file or take a photo"
+                            aria-describedby="fileHelp"
                         >
-                        <p class="body-sm text-muted mt-2">Take a photo or select from gallery</p>
+                        <p id="fileHelp" class="body-sm text-muted mt-2">Take a photo or select from gallery</p>
                     </div>
 
                     <!-- Scan Button -->
-                    <button id="scanBtn" class="btn btn-primary w-full">
+                    <button id="scanBtn" class="btn btn-primary w-full" aria-label="Scan the selected wine label image">
                         Scan Label
                     </button>
 
                     <!-- Scan Result -->
-                    <div id="scanResult" class="card-dark mt-6" hidden>
+                    <div id="scanResult" class="card-dark mt-6 hidden">
                         <!-- Result content will be populated by JavaScript -->
                     </div>
                 </div>

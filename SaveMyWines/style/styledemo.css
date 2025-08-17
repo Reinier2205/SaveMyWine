@@ -48,9 +48,23 @@ h1, h2, h3, h4 {
   opacity: 0.9;
 }
 
+.button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .button-secondary {
   background: var(--color-secondary);
   color: var(--color-primary);
+}
+
+.button-secondary:hover {
+  opacity: 0.9;
+}
+
+.button-secondary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .card {
@@ -64,6 +78,11 @@ h1, h2, h3, h4 {
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.card:focus-within {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .input, select, textarea {
@@ -80,6 +99,12 @@ h1, h2, h3, h4 {
 .input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--color-primary);
+}
+
+.input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
 }
 
 .tag {
@@ -261,6 +286,7 @@ h1, h2, h3, h4 {
   border: none;
   font-family: inherit;
   font-size: 1rem;
+  position: relative;
 }
 
 .btn-primary {
@@ -273,6 +299,15 @@ h1, h2, h3, h4 {
   transform: translateY(-1px);
 }
 
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .btn-secondary {
   background: var(--color-secondary);
   color: var(--color-primary);
@@ -281,6 +316,35 @@ h1, h2, h3, h4 {
 .btn-secondary:hover {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Special button variant for CSV export */
+.btn-accent {
+  background: var(--color-accent);
+  color: #212;
+}
+
+.btn-accent:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-accent:active {
+  transform: translateY(0);
+}
+
+.btn-accent:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Form Elements */
@@ -298,12 +362,41 @@ h1, h2, h3, h4 {
   color: #e2e8f0;
 }
 
+/* Enhanced focus states for all form elements */
+.bg-input:focus-visible,
+.border-input-border:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
+}
+
+/* Hover states for form elements */
+.bg-input:hover,
+.border-input-border:hover,
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #475569;
+}
+
+/* Improved focus ring for better visibility */
+*:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast */
 .text-muted {
   color: #94a3b8;
+  /* Ensuring sufficient contrast against dark backgrounds */
 }
 
 .placeholder-muted::placeholder {
   color: #94a3b8;
+  /* Ensuring sufficient contrast against dark backgrounds */
 }
 
 .bg-chip {
@@ -345,6 +438,12 @@ h1, h2, h3, h4 {
 
 .nav-link:hover,
 .nav-link.active {
+  background: rgba(255,255,255,0.1);
+}
+
+.nav-link:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
   background: rgba(255,255,255,0.1);
 }
 
@@ -472,10 +571,92 @@ h1, h2, h3, h4 {
   color: var(--color-text);
 }
 
+/* Grid Layout */
 .wines-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-4);
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .wines-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* Wine Image Styling */
+.wine-image {
+  width: 100%;
+  border-radius: 12px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+/* Tag Variants */
+.tag {
+  display: inline-block;
+  background: var(--color-secondary);
+  color: #3a2a2a;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin: 2px 6px 0 0;
+  font-size: 0.85rem;
+}
+
+.tag-accent {
+  background: var(--color-accent);
+  color: #212;
+}
+
+.tag:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.tag-accent:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* Utility classes for common display states */
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+/* Screen reader only - visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
 }
 
 .wine-card {
@@ -648,5 +829,130 @@ h1, h2, h3, h4 {
   
   .wines-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Loading and State Indicators */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--color-accent);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Improved form accessibility */
+.form-group {
+  margin-bottom: var(--space-3);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.form-group label:focus-within {
+  color: var(--color-primary);
+}
+
+/* Error states for form validation */
+.input-error {
+  border-color: #ef4444;
+}
+
+.input-error:focus-visible {
+  outline-color: #ef4444;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: var(--space-1);
+}
+
+/* Additional Utility Classes */
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.leading-relaxed {
+  line-height: 1.75;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+/* Accessibility improvements */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .card {
+    border: 2px solid var(--color-text);
+  }
+  
+  .input, select, textarea {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

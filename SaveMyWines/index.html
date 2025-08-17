@@ -11,6 +11,9 @@
     <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header class="header">
         <div class="container">
             <h1 class="logo">SaveMyWines</h1>
@@ -22,29 +25,29 @@
             </nav>
         </div>
     </header>
-    <main class="main">
+    <main class="main" id="main-content">
         <div class="container">
             <section class="hero">
-                <h2 class="hero-title">Discover and Save Your Favorite Wines</h2>
+                <h1 class="hero-title">Discover and Save Your Favorite Wines</h1>
                 <p class="hero-text">Build your personal wine collection, scan labels, and never forget a great bottle again.</p>
                 <div class="hero-actions">
-                    <a href="scan.html" class="button">Start Scanning</a>
-                    <a href="wines.html" class="button button-secondary">View Collection</a>
+                    <a href="scan.html" class="button" aria-label="Start scanning wine labels to build your collection">Start Scanning</a>
+                    <a href="wines.html" class="button button-secondary" aria-label="View your current wine collection">View Collection</a>
                 </div>
             </section>
             <section class="features">
-                <h3 class="section-title">Why SaveMyWines?</h3>
+                <h2 class="section-title">Why SaveMyWines?</h2>
                 <div class="feature-grid">
                     <div class="card feature-card">
-                        <h4>Easy Scanning</h4>
+                        <h3>Easy Scanning</h3>
                         <p>Simply scan wine labels with your phone to add them to your collection.</p>
                     </div>
                     <div class="card feature-card">
-                        <h4>Smart Organization</h4>
+                        <h3>Smart Organization</h3>
                         <p>Organize wines by region, varietal, rating, and more.</p>
                     </div>
                     <div class="card feature-card">
-                        <h4>Personal Notes</h4>
+                        <h3>Personal Notes</h3>
                         <p>Add tasting notes, ratings, and memories to each wine.</p>
                     </div>
                 </div>

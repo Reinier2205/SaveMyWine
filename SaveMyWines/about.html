@@ -11,6 +11,9 @@
     <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header class="header">
         <div class="container">
             <h1 class="logo">SaveMyWines</h1>
@@ -22,7 +25,7 @@
             </nav>
         </div>
     </header>
-    <main class="main">
+    <main class="main" id="main-content">
         <div class="container">
             <section class="about-section">
                 <h2 class="section-title">About SaveMyWines</h2>
@@ -69,8 +72,8 @@
                         <h3>Get Started</h3>
                         <p>Ready to start building your wine collection? Head over to the scan page to add your first wine, or browse the existing collection to see what's possible.</p>
                         <div class="cta-buttons">
-                            <a href="scan.html" class="button">Start Scanning</a>
-                            <a href="wines.html" class="button button-secondary">View Collection</a>
+                            <a href="scan.html" class="button" aria-label="Start scanning wine labels to build your collection">Start Scanning</a>
+                            <a href="wines.html" class="button button-secondary" aria-label="View your current wine collection">View Collection</a>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,9 @@
     <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header class="header">
         <div class="container">
             <h1 class="logo">SaveMyWines</h1>
@@ -22,7 +25,7 @@
             </nav>
         </div>
     </header>
-    <main class="main">
+    <main class="main" id="main-content">
         <div class="container">
             <!-- Hero Section -->
             <section class="hero-section">
@@ -53,18 +56,20 @@
                 <div class="card p-6">
                     <h3 class="heading-3 mb-4">Export & Import</h3>
                     <div class="flex items-center gap-4 flex-wrap">
-                        <button id="exportJson" class="btn btn-secondary">
+                        <button id="exportJson" class="btn btn-secondary" aria-label="Export wine collection as JSON file">
                             Export JSON
                         </button>
-                        <button id="exportCsv" class="btn btn-secondary" style="background:var(--color-accent);color:#212">
+                        <button id="exportCsv" class="btn btn-accent" aria-label="Export wine collection as CSV file">
                             Export CSV
                         </button>
                         <div class="flex-1 min-w-64">
+                            <label for="importFile" class="sr-only">Import wine collection from JSON file</label>
                             <input 
                                 id="importFile" 
                                 class="bg-input border border-input-border text-main placeholder-muted text-base w-full p-3 rounded-lg" 
                                 type="file" 
                                 accept=".json"
+                                aria-label="Choose JSON file to import wine collection"
                             >
                         </div>
                     </div>
@@ -76,7 +81,7 @@
 
             <!-- Wines Grid -->
             <section class="wines-section">
-                <div id="grid" style="display:grid;gap:16px;grid-template-columns:1fr">
+                <div id="grid" class="wines-grid">
                     <!-- Wine cards will be populated by JavaScript -->
                 </div>
                 
@@ -86,7 +91,7 @@
                 </div>
                 
                 <!-- Empty State -->
-                <div id="empty" class="text-center p-8" style="display: none;">
+                <div id="empty" class="text-center p-8 hidden">
                     <div class="card p-8 max-w-md mx-auto">
                         <h3 class="heading-3 mb-4">No Wines Yet</h3>
                         <p class="body mb-6">Start building your collection by scanning your first wine label.</p>
@@ -190,13 +195,13 @@
         // Paint wines to grid
         const paint = (arr) => { 
             if (arr.length === 0) {
-                grid.style.display = 'none';
-                empty.style.display = 'block';
+                grid.classList.add('hidden');
+                empty.classList.remove('hidden');
                 return;
             }
             
-            grid.style.display = 'grid';
-            empty.style.display = 'none';
+            grid.classList.remove('hidden');
+            empty.classList.add('hidden');
             
             grid.innerHTML = arr.map(w => {
                 const age = yearsAndMonthsSince(w.date_purchased);
@@ -204,8 +209,7 @@
                 
                 return `
                     <div class="card p-6">
-                        <img src="${w.label_image_url || ''}" alt="Wine Label" 
-                             style="width:100%;border-radius:12px;aspect-ratio:16/9;object-fit:cover;margin-bottom:16px">
+                        <img src="${w.label_image_url || ''}" alt="Wine Label" class="wine-image">
                         <h3 class="heading-3 mb-3">
                             ${w.name} 
                             <span class="tag">${w.varietal || ''}</span>
@@ -215,12 +219,12 @@
                         </div>
                         <div class="body mb-4">
                             Best drink: ${w.best_drink_date || '-'} 
-                            ${due ? '<span class="tag" style="background:var(--color-accent);color:#212">Soon</span>' : ''}
+                            ${due ? '<span class="tag tag-accent">Soon</span>' : ''}
                         </div>
                         ${w.notes ? `<div class="body-sm text-muted mb-4">${w.notes}</div>` : ''}
                         <div class="flex gap-2">
-                            <button class="btn btn-secondary" onclick="editWine('${w.id}')">Edit</button>
-                            <button class="btn btn-secondary" onclick="deleteWine('${w.id}')">Delete</button>
+                            <button class="btn btn-secondary" onclick="editWine('${w.id}')" aria-label="Edit wine details">Edit</button>
+                            <button class="btn btn-secondary" onclick="deleteWine('${w.id}')" aria-label="Delete wine from collection">Delete</button>
                         </div>
                     </div>`;
             }).join(''); 
@@ -229,9 +233,9 @@
         // Load and display wines
         const loadWines = async () => {
             try {
-                loading.style.display = 'block';
-                grid.style.display = 'none';
-                empty.style.display = 'none';
+                loading.classList.remove('hidden');
+                grid.classList.add('hidden');
+                empty.classList.add('hidden');
                 
                 wines = await listWines();
                 paint(wines);
@@ -244,7 +248,7 @@
                     </div>
                 `;
             } finally {
-                loading.style.display = 'none';
+                loading.classList.add('hidden');
             }
         };
         
