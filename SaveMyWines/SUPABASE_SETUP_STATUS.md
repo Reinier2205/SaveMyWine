@@ -1,95 +1,127 @@
-# Step 2 - Supabase Setup Status
+# SaveMyWines Supabase Setup Status
 
-## ✅ Completed Tasks
+## ✅ Completed Steps
 
-### 1. Supabase Project Setup
-- **Status**: READY FOR MANUAL SETUP
-- **Action Required**: Create Supabase project at https://supabase.com
-- **Instructions**: Follow the detailed guide in `/supabase/README.md`
-
-### 2. Environment Placeholders in `/scripts/api.js`
+### Step 1: Project Setup
 - **Status**: ✅ COMPLETED
-- **Location**: Lines 4-8 in `scripts/api.js`
-- **Content**:
-  ```javascript
-  export const CONFIG = {
-      SUPABASE_URL: "<YOUR_SUPABASE_URL>",
-      SUPABASE_ANON_KEY: "<YOUR_SUPABASE_ANON_KEY>",
-      EDGE_SCAN_URL: "<YOUR_SUPABASE_FUNCTION_URL>/scan_wine",
-  };
-  ```
+- **Supabase Project**: Created at https://ssgraiwyiknqtlhjxvpc.supabase.co
+- **Project Name**: savemywines
 
-### 3. Database Schema in `/supabase/schema.sql`
+### Step 2: Database & Storage
 - **Status**: ✅ COMPLETED
-- **Content**: 
-  - `wines` table with all required columns
-  - Row Level Security (RLS) enabled
-  - RLS policies for select, insert, and update operations
-  - Device-based segmentation using `device_id`
+- **Database Schema**: `wines` table with RLS policies created
+- **Storage Bucket**: "labels" bucket configured
+- **Frontend Config**: API configuration updated with real credentials
 
-### 4. Storage Bucket Configuration
-- **Status**: READY FOR MANUAL SETUP
-- **Action Required**: Create "labels" bucket in Supabase Dashboard
-- **Settings**: 
-  - Public = false
-  - Add RLS rules if needed
-
-### 5. Setup Documentation
+### Step 3: Edge Function - scan_wine
 - **Status**: ✅ COMPLETED
-- **File**: `/supabase/README.md`
-- **Content**: Comprehensive setup guide with step-by-step instructions
+- **Function**: `scan_wine` Edge Function created and ready for deployment
+- **Features**: 
+  - Accepts multipart/form-data with image and device_id
+  - Uploads to Supabase storage
+  - Calls Google Vision API for text/label detection
+  - Parses wine information (name, producer, varietal, vintage)
+  - Returns structured JSON with extracted data
 
-## 🔄 Next Manual Steps Required
+### Step 4: Frontend Scan Flow
+- **Status**: ✅ COMPLETED
+- **scan.html**: Updated with hero section and scan interface
+- **scan.js**: Implemented complete scan functionality
+- **utils.js**: Added wine utility functions (calcBestDrinkDate, yearsAndMonthsSince)
+- **styledemo.css**: Added required CSS classes and styling
 
-### 1. Create Supabase Project
-- Visit https://supabase.com
-- Sign in/create account
-- Create new project named "savemywines"
-- Wait for setup completion
+## 🔧 Edge Function Details
 
-### 2. Run Database Schema
-- Copy SQL from `/supabase/schema.sql`
-- Paste into Supabase SQL Editor
-- Execute to create table and policies
+### Location
+- `supabase/functions/scan_wine/index.ts` - Main function code
+- `supabase/functions/scan_wine/README.md` - Setup instructions
+- `supabase/functions/scan_wine/deploy.sh` - Linux/Mac deployment script
+- `supabase/functions/scan_wine/deploy.bat` - Windows deployment script
+- `supabase/functions/scan_wine/test.js` - Test script
 
-### 3. Create Storage Bucket
-- Go to Storage section in dashboard
-- Create bucket named "labels"
-- Set public = false
+### Environment Variables Required
+- `VISION_API_KEY` - Google Cloud Vision API key
+- `SUPABASE_URL` - Your Supabase project URL
+- `SUPABASE_SERVICE_ROLE_KEY` - Service role key (not anon key)
 
-### 4. Update Environment Variables
-- Get Project URL and Anon Key from Settings > API
-- Replace placeholders in `scripts/api.js`
+### Deployment
+1. Install Supabase CLI: `npm install -g supabase`
+2. Login: `supabase login`
+3. Link project: `supabase link --project-ref ssgraiwyiknqtlhjxvpc`
+4. Deploy: `supabase functions deploy scan_wine`
 
-### 5. Test Setup
-- Verify table creation
-- Test RLS policies
-- Test storage bucket
+## 🎯 Next Steps
 
-## 📁 Files Created/Modified
+### Immediate Actions Required
+1. **Get Google Vision API Key** from Google Cloud Console
+2. **Get Supabase Service Role Key** from your project dashboard
+3. **Set Environment Variables** in Supabase Edge Functions settings
+4. **Deploy the Function** using the provided scripts
 
-- ✅ `supabase/schema.sql` - Database schema with RLS
-- ✅ `supabase/README.md` - Setup instructions
-- ✅ `scripts/api.js` - Added Supabase CONFIG export
-- ✅ `SUPABASE_SETUP_STATUS.md` - This status document
+### Testing
+- Use `test.js` to verify function deployment
+- Test with sample wine label images
+- Verify storage uploads work correctly
+- Check Vision API responses
 
-## 🎯 Acceptance Criteria Status
+## 📁 Project Structure
 
-- ✅ **Supabase project ready**: Configuration files prepared
-- ✅ **Table created**: SQL schema ready to execute
-- ✅ **Bucket "labels" exists**: Instructions provided for manual creation
+```
+SaveMyWines/
+├── scan.html                    # Updated scan interface
+├── supabase/
+│   ├── functions/
+│   │   └── scan_wine/
+│   │       ├── index.ts          # Main function
+│   │       ├── README.md         # Setup guide
+│   │       ├── deploy.sh         # Linux/Mac deploy
+│   │       ├── deploy.bat        # Windows deploy
+│   │       └── test.js           # Test script
+│   ├── schema.sql                # Database schema
+│   └── README.md                 # Setup instructions
+├── scripts/
+│   ├── api.js                    # Frontend config
+│   ├── scan.js                   # Updated scan functionality
+│   └── utils.js                  # Added wine utilities
+├── style/
+│   └── styledemo.css             # Updated with scan styles
+└── SUPABASE_SETUP_STATUS.md      # This file
+```
 
-## 🚀 Ready for Next Phase
+## 🚀 Ready for Production
 
-Once the manual Supabase setup is complete, the project will be ready for:
-- Frontend integration with Supabase client
-- Device ID generation implementation
-- Edge Function creation for wine scanning
-- Complete data flow testing
+Once the Edge Function is deployed and tested:
+- Wine label scanning will work end-to-end
+- Frontend can capture images and send to Edge Function
+- Images will be stored in Supabase storage
+- Wine data will be extracted using AI
+- Users can edit and save wine information
+
+## 🔍 Step 4 Features
+
+### Scan Interface
+- **Hero Section**: "Scan a Bottle" with descriptive text
+- **File Upload**: Input with camera capture support
+- **Scan Button**: Triggers label analysis
+- **Result Display**: Editable form with extracted data
+
+### Functionality
+- **Device ID**: Auto-generated and stored in localStorage
+- **File Handling**: Supports image uploads and camera capture
+- **Edge Function Integration**: POSTs to scan_wine function
+- **Data Extraction**: Shows parsed wine information
+- **Form Editing**: All fields are editable before saving
+- **Best Drink Date**: Auto-calculated based on varietal and vintage
+
+### User Experience
+- **Loading States**: Button shows "Scanning..." during processing
+- **Error Handling**: Clear error messages for failures
+- **File Preview**: Shows selected file information
+- **Responsive Design**: Works on both desktop and mobile
 
 ## 📚 Resources
 
-- [Supabase Documentation](https://supabase.com/docs)
-- [Database Guide](https://supabase.com/docs/guides/database)
-- [Storage Guide](https://supabase.com/docs/guides/storage)
-- [Edge Functions Guide](https://supabase.com/docs/guides/functions)
+- [Supabase Edge Functions](https://supabase.com/docs/guides/functions)
+- [Google Cloud Vision API](https://cloud.google.com/vision/docs)
+- [Deployment Scripts](./supabase/functions/scan_wine/)
+- [Test Script](./supabase/functions/scan_wine/test.js)

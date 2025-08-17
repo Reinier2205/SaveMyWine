@@ -24,46 +24,41 @@
     </header>
     <main class="main">
         <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="heading-1">Scan a Bottle</h1>
+                <p class="body">Take a photo of a wine label to automatically extract details and add it to your collection.</p>
+            </section>
+
+            <!-- Scan Interface -->
             <section class="scan-section">
-                <h2 class="section-title">Scan Wine Label</h2>
-                <p class="section-text">Point your camera at a wine label to add it to your collection.</p>
-                <div class="scan-container">
-                    <div class="card scan-card">
-                        <div class="camera-placeholder">
-                            <div class="camera-icon">📷</div>
-                            <p>Camera will activate here</p>
-                        </div>
-                        <button class="button scan-button">Start Camera</button>
+                <div class="card p-8 max-w-md mx-auto">
+                    <h2 class="heading-3 mb-6">Upload Wine Label</h2>
+                    
+                    <!-- File Upload Input -->
+                    <div class="mb-6">
+                        <label for="labelFile" class="block text-base font-bold font-sans text-main mb-2">
+                            Select Image
+                        </label>
+                        <input 
+                            id="labelFile" 
+                            class="bg-input border border-input-border text-main placeholder-muted text-base w-full p-3 rounded-lg" 
+                            type="file" 
+                            accept="image/*" 
+                            capture="environment"
+                        >
+                        <p class="body-sm text-muted mt-2">Take a photo or select from gallery</p>
                     </div>
-                </div>
-                <div class="manual-entry">
-                    <h3>Or Enter Manually</h3>
-                    <form class="wine-form">
-                        <div class="form-group">
-                            <label for="wine-name">Wine Name</label>
-                            <input type="text" id="wine-name" class="input" placeholder="e.g., Château Margaux 2015">
-                        </div>
-                        <div class="form-group">
-                            <label for="wine-varietal">Varietal</label>
-                            <select id="wine-varietal" class="input">
-                                <option value="">Select Varietal</option>
-                                <option value="cabernet-sauvignon">Cabernet Sauvignon</option>
-                                <option value="merlot">Merlot</option>
-                                <option value="pinot-noir">Pinot Noir</option>
-                                <option value="chardonnay">Chardonnay</option>
-                                <option value="sauvignon-blanc">Sauvignon Blanc</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="wine-region">Region</label>
-                            <input type="text" id="wine-region" class="input" placeholder="e.g., Bordeaux, France">
-                        </div>
-                        <div class="form-group">
-                            <label for="wine-year">Vintage</label>
-                            <input type="number" id="wine-year" class="input" placeholder="2020" min="1900" max="2030">
-                        </div>
-                        <button type="submit" class="button">Add Wine</button>
-                    </form>
+
+                    <!-- Scan Button -->
+                    <button id="scanBtn" class="btn btn-primary w-full">
+                        Scan Label
+                    </button>
+
+                    <!-- Scan Result -->
+                    <div id="scanResult" class="card-dark mt-6" hidden>
+                        <!-- Result content will be populated by JavaScript -->
+                    </div>
                 </div>
             </section>
         </div>

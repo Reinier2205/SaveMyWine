@@ -1,6 +1,41 @@
 // Utility functions for SaveMyWines
 // Common helper functions used across the application
 
+// Wine-specific utility functions
+const AGE_YEARS = {
+    "cabernet sauvignon": 10,
+    "merlot": 6,
+    "pinotage": 6,
+    "shiraz": 8, 
+    "syrah": 8,
+    "pinot noir": 5,
+    "chardonnay": 3,
+    "sauvignon blanc": 2,
+    "chenin blanc": 3,
+    "malbec": 6,
+    "tempranillo": 8,
+    "grenache": 5,
+    "riesling": 5,
+    "nebbiolo": 12
+};
+
+export function calcBestDrinkDate(vintage, varietal) {
+    if (!vintage) return "";
+    const v = String(varietal || "").toLowerCase();
+    const years = AGE_YEARS[v] ?? 5;
+    const d = new Date(`${vintage}-09-01`);
+    d.setFullYear(d.getFullYear() + years);
+    return d.toISOString().slice(0, 10);
+}
+
+export function yearsAndMonthsSince(iso) {
+    const a = new Date(iso), b = new Date();
+    let months = (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
+    const years = Math.floor(months / 12); 
+    months = months % 12;
+    return { years, months };
+}
+
 // ID generation
 function generateId(length = 8) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -432,5 +467,9 @@ window.SaveMyWines.utils = {
     // Date utilities
     isToday,
     isThisWeek,
-    isThisMonth
+    isThisMonth,
+
+    // Wine-specific utilities
+    calcBestDrinkDate,
+    yearsAndMonthsSince
 };
