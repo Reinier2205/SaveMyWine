@@ -21,15 +21,27 @@ window.saveWineFromForm = async (w) => {
       saveBtn.textContent = 'Saving...';
     }
 
-    // Send to add_wine Edge Function
+    // Send to add_wine Edge Function with proper authentication
     const res = await fetch(CONFIG.EDGE_ADD_URL, {
       method: "POST", 
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${CONFIG.SUPABASE_ANON_KEY}`,
+        'apikey': CONFIG.SUPABASE_ANON_KEY
+      },
       body: JSON.stringify({ device_id, ...w })
     });
 
     if (!res.ok) {
-      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+      if (res.status === 401) {
+        throw new Error('Authentication failed. Please check your Supabase configuration.');
+      } else if (res.status === 403) {
+        throw new Error('Access denied. You may not have permission to use this feature.');
+      } else if (res.status === 500) {
+        throw new Error('Server error. The service is temporarily unavailable.');
+      } else {
+        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+      }
     }
 
     const json = await res.json();
@@ -64,12 +76,25 @@ export async function listWines() {
       return [];
     }
 
-    // Query list_wines Edge Function
+    // Query list_wines Edge Function with proper authentication
     const url = `${CONFIG.EDGE_LIST_URL}?device_id=${encodeURIComponent(device_id)}`;
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${CONFIG.SUPABASE_ANON_KEY}`,
+        'apikey': CONFIG.SUPABASE_ANON_KEY
+      }
+    });
     
     if (!res.ok) {
-      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+      if (res.status === 401) {
+        throw new Error('Authentication failed. Please check your Supabase configuration.');
+      } else if (res.status === 403) {
+        throw new Error('Access denied. You may not have permission to use this feature.');
+      } else if (res.status === 500) {
+        throw new Error('Server error. The service is temporarily unavailable.');
+      } else {
+        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+      }
     }
 
     const wines = await res.json();

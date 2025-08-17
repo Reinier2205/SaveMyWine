@@ -956,6 +956,40 @@ textarea:hover {
   font-size: 0.875rem;
 }
 
+/* Info box colors */
+.bg-blue-50 {
+  background-color: #eff6ff;
+}
+
+.border-blue-200 {
+  border-color: #bfdbfe;
+}
+
+.text-blue-800 {
+  color: #1e40af;
+}
+
+/* Demo form colors */
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.bg-yellow-50 {
+  background-color: #fefce8;
+}
+
+.border-yellow-200 {
+  border-color: #fde68a;
+}
+
+.text-yellow-800 {
+  color: #92400e;
+}
+
 .text-lg {
   font-size: 1.125rem;
 }
